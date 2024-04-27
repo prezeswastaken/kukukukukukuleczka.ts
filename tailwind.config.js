@@ -2,9 +2,9 @@
 export const theme = {
 	extend: {
 		colors: {
-			main: "#62cf66", // Add your custom color here
+			main: "#c6a0f6", // Add your custom color here
 			bg: "#020321",
-			secondary: "#07570A",
+			secondary: "#eed49f",
 		},
 		// Add a font Poppins
 		fontFamily: {
