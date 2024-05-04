@@ -2,7 +2,7 @@
 
 <template>
     <div
-        class="flex absolute flex-col gap-5 justify-center items-center w-full min-h-screen bg-opacity-80 bg-bg"
+        class="flex absolute top-0 flex-col gap-5 justify-center items-center w-full min-h-screen bg-opacity-80 bg-bg"
     >
         <p class="text-7xl">Piszemy twoje CV</p>
         <img
