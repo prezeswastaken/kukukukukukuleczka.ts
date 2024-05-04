@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Technology } from "~/enums/ProgrammingLanguage";
 import type { basicCreateResponse } from "~/types/basicCreateResponse";
 import type { BasicForm } from "~/types/basicForm";
 
@@ -54,6 +55,27 @@ async function handleSubmit() {
         class="flex flex-col gap-5 items-end"
         v-auto-animate
     >
+        <div
+            class="flex gap-5 justify-between items-center"
+            v-if="form.full_name != ''"
+        >
+            <h1 class="text-secondary">Programming languages</h1>
+            <select
+                v-model="form.programming_languages"
+                type="text"
+                class="py-2 px-3 border bg-bg border-secondary"
+                multiple
+            >
+                PENES
+                <option
+                    v-for="technology in Object.values(Technology)"
+                    :key="technology"
+                    :value="technology"
+                >
+                    {{ technology }}
+                </option>
+            </select>
+        </div>
         <div class="flex gap-5 justify-between items-center">
             <h1 class="text-secondary">Full name</h1>
             <input
