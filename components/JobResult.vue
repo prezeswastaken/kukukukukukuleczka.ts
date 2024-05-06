@@ -29,8 +29,7 @@ onMounted(() => {
 
 <template>
     <div :class="'p-10 rounded-3xl bg-bg ' + colorClass">
-        <p>{{ jobResponse.job.company }}</p>
-        <p>{{ jobResponse.job.title }}</p>
+        <Job :job="jobResponse.job" />
     </div>
 </template>
 
