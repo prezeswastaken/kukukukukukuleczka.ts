@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { PdfResponse } from "~/types/PdfResponse";
+
 const cvString = useState("cvString") as Ref<string>;
 const lines = cvString.value.split("\n");
 const cvForm = useState("cvForm") as Ref<{
@@ -8,8 +10,21 @@ const cvForm = useState("cvForm") as Ref<{
     languages: string[];
 }>;
 
-onMounted(() => {
+let pdfLink = ref<string | null>(null);
+
+onMounted(async () => {
     console.log(cvForm.value);
+    const pdfResponse = await $fetch<PdfResponse>(
+        "https://wheelwallet.cloud/pdf",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: { cv_string: cvString.value },
+        },
+    );
+    pdfLink.value = pdfResponse.pdf_link;
 });
 
 const checkJobRequest = {
@@ -34,6 +49,14 @@ console.log(jobs.value);
     <div class="p-5 w-1/2 rounded-3xl bg-bg">
         <p v-for="line in lines">{{ line }}</p>
     </div>
+    <NuxtLink
+        v-if="pdfLink"
+        :to="pdfLink"
+        target="_blank"
+        class="p-3 text-3xl duration-300 hover:text-teal-500 text-secondary bg-bg"
+    >
+        Link to PDF</NuxtLink
+    >
     <div class="flex flex-col gap-3 mt-10">
         <JobResult
             v-for="job in jobs"
@@ -41,12 +64,6 @@ console.log(jobs.value);
             :jobResponse="job"
         />
     </div>
-    <button
-        class="p-5 py-2 px-3 mt-3 rounded-3xl duration-300 hover:text-teal-500 bg-primary text-secondary bg-bg"
-        @click="console.log('generating pdf...')"
-    >
-        WYGENERUJ PLIK PDF I OCEŃ OFERTY PRACY
-    </button>
 </template>
 
 <style scoped></style>
