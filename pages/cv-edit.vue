@@ -45,24 +45,28 @@ console.log(jobs.value);
 </script>
 
 <template>
-    <h1 class="mb-5 text-7xl font-bold uppercase text-secondary">twoje CV</h1>
-    <div class="p-5 w-1/2 rounded-3xl bg-bg">
-        <p v-for="line in lines">{{ line }}</p>
-    </div>
-    <NuxtLink
-        v-if="pdfLink"
-        :to="pdfLink"
-        target="_blank"
-        class="p-3 text-3xl duration-300 hover:text-teal-500 text-secondary bg-bg"
-    >
-        Link to PDF</NuxtLink
-    >
-    <div class="flex flex-col gap-3 mt-10">
-        <JobResult
-            v-for="job in jobs"
-            :key="job.job.company"
-            :jobResponse="job"
-        />
+    <div class="flex flex-col justify-center items-center" v-auto-animate>
+        <h1 class="mb-5 text-7xl font-bold uppercase text-secondary">
+            twoje CV
+        </h1>
+        <div class="p-5 w-1/2 rounded-3xl bg-bg">
+            <p v-for="line in lines">{{ line }}</p>
+        </div>
+        <NuxtLink
+            v-if="pdfLink"
+            :to="pdfLink"
+            target="_blank"
+            class="p-3 text-3xl duration-300 hover:text-teal-500 text-secondary bg-bg"
+        >
+            Link to PDF</NuxtLink
+        >
+        <div class="flex flex-col gap-3 mt-10">
+            <JobResult
+                v-for="job in jobs"
+                :key="job.job.company"
+                :jobResponse="job"
+            />
+        </div>
     </div>
 </template>
 
